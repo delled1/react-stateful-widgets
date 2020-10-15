@@ -47,10 +47,13 @@ export default function Input() {
     const { value } = evt.target;
 
     /* STEP 4 */
-    evt = setInputValue;
+    setInputValue(value);
+    console.log(evt);
+    console.log(setInputValue);
   };
   const reset = () => {
     /* STEP 5 */
+    setInputValue(initialInputValue);
   };
 
   const style = {
@@ -58,7 +61,7 @@ export default function Input() {
     marginBottom: "0.3em",
     color: "royalblue" /* STEP 2 */,
   };
-  if (inputValue > 10) {
+  if (inputValue.length > 10) {
     style.color = "crimson";
   } else {
     style.color = "royalblue";
@@ -67,9 +70,17 @@ export default function Input() {
   return (
     <div className="widget-input container">
       <h2>Input</h2>
-      <div id="output" style={style}></div> {inputValue.toUpperCase}
+      <div id="output" style={style}>
+        {inputValue.toUpperCase()}
+      </div>
       <div>
-        <input id="input" type="text" onChange={changeInput} /> {/* STEP 6 */}
+        <input
+          id="input"
+          type="text"
+          onChange={changeInput}
+          value={inputValue}
+        />{" "}
+        {/* STEP 6 */}
         <button id="resetInput" onClick={reset}>
           Reset
         </button>
